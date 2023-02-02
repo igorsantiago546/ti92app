@@ -21,6 +21,7 @@ namespace ti92app
         private void Form1_Load(object sender, EventArgs e)
         {
             Cliente clemte= new Cliente();
+            cliente.
         }
     }
 }
