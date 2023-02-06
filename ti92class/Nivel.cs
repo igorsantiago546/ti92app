@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace ti92class
 {
@@ -34,22 +35,46 @@ namespace ti92class
         // Métodos da classe 
         public void Inserir()
         {
-            // Gravar um novo nível na tabela niveis
+            // Gravar um novo nível na tabela niveis0
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "insert niveis (nome, sigla) values ('" + Nome + "','" + Sigla + "')";
+            cmd.ExecuteNonQuery();
+            cmd.CommandText = "select @@identity";
+            Id = Convert.ToInt32(cmd.ExecuteScalar());
 
         }
-        public List<Nivel> Listar()
+        public static List<Nivel> Listar()
         {
-            // Entrega uma lista de todos os níveis
+            //0 - Entrega uma lista de todos os níveis (cria um espaço do tipo lista)
             List<Nivel> lista = new List<Nivel>();
-
             // Lógica que recupera todos os níveis da tabela
+            // 1 - Abrir conecção com o banco de dados -
+            var cmd = Banco.Abrir();
+            // 2 - Definir tipo de comando Sql (text/store procedure)
+            cmd.CommandType = CommandType.Text;
+            // 3 - Atribuir comando Sql (Texto)
+            cmd.CommandText = "select * from niveis order by nome asc";
+            // 4 - Executar o comando Sql e armazenar o retorno do banco em um objeto do tipo MySqlDataReader
+            var dr = cmd.ExecuteReader();
+            // 5 - Preencher o objeto List com o retorno do banco, se houver!!
+            while (dr.Read()) // Enquanto houver próximo registro 
+            {
+                lista.Add(new Nivel(
+                    dr.GetInt32(0),
+                    dr.GetString(1),
+                    dr.GetString(2)
+                    )
+                );
+            }
+            // retorna a lista preenchida
             return lista;
         }
         public static Nivel ObterPorId(int _id)
         {
             Nivel nivel = new Nivel();
             var cmd = Banco.Abrir();
-            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandType = CommandType.Text;
             cmd.CommandText = "select * from niveis where id = " + _id;
             var dr = cmd.ExecuteReader();
             while (dr.Read())
