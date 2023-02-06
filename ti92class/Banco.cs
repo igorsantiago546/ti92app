@@ -12,9 +12,22 @@ namespace ti92class
         public static MySqlCommand Abrir()
         {
             // Conexão com Mysql no C#
-
             MySqlCommand cmd = new MySqlCommand();
-            return cmd;
+            try // tenta abrir
+            {
+                string strCon = @"server=127.0.0.1;database=ti92sysdb;user id=root;password=";
+                MySqlConnection cn = new MySqlConnection(strCon);
+                cn.Open();
+                cmd.Connection = cn;
+            
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+           return cmd;
         }
     }
 }

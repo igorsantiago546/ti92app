@@ -20,8 +20,13 @@ namespace ti92app
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Cliente clemte= new Cliente();
-            cliente.
+            // Cliente clemte= new Cliente();
+
+            Nivel n = new Nivel();
+
+            Nivel nivelRet = n.ObterPorId(2);
+            label1.Text = nivelRet.ToString();
+           
         }
     }
 }
