@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ti92class
 {
-    internal class Usuario
+    public class Usuario
     {
+
     }
 }

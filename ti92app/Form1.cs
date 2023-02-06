@@ -22,10 +22,10 @@ namespace ti92app
         {
             // Cliente clemte= new Cliente();
 
-            Nivel n = new Nivel();
+            //Nivel n = new Nivel();
 
-            Nivel nivelRet = n.ObterPorId(2);
-            label1.Text = nivelRet.ToString();
+            Nivel nivel = Nivel.ObterPorId(1);
+            label1.Text = nivel.Id + " - " + nivel.Nome + " - " + nivel.Sigla;
            
         }
     }

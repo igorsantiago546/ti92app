@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ti92class
 {
-    internal class Vendas
+    public class Vendas
     {
     }
 }

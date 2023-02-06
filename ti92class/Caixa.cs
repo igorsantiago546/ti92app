@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ti92class
 {
-    internal class Caixa
+    public class Caixa
     {
     }
 }
