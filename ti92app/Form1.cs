@@ -26,13 +26,7 @@ namespace ti92app
 
             Nivel nivel = Nivel.ObterPorId(1);
             label1.Text = nivel.Id + " - " + nivel.Nome + " - " + nivel.Sigla;
-
-            List<Nivel> list = Nivel.Listar();
-            foreach (var item in list)
-            {
-                listBox1.Items.Add(item.Id + " - " + item.Nome);
-            }
-           
+            AtualizaListBox();
            
         }
 
@@ -41,18 +35,57 @@ namespace ti92app
             Nivel nivel = new Nivel(txtNomeNivel.Text,txtSiglaNivel.Text);
             nivel.Inserir();
             txtIdNivel.Text = nivel.Id.ToString();
+            AtualizaListBox();
+            MessageBox.Show("Nível inserido com Sucesso \n ID: "+ nivel.Id.ToString());
+         
+           }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (btnEditar.Text=="Editar")
+            {
+                txtIdNivel.ReadOnly = false;
+                txtIdNivel.Focus();
+                btnEditar.Text = "Gravar";
+                btnInsereNivel.Enabled = false;
+            }
+            else
+            {
+                Nivel nivel = new Nivel();
+                nivel.Id = int.Parse(txtIdNivel.Text);
+                nivel.Nome = txtNomeNivel.Text;
+                nivel.Sigla = txtSiglaNivel.Text;
+                Nivel.Atualizar(nivel);
+                txtIdNivel.ReadOnly = true;
+                txtNomeNivel.Focus();
+                btnEditar.Text = "Editar";
+                AtualizaListBox();
+            }
+        }
+
+        private void txtIdNivel_TextChanged(object sender, EventArgs e)
+        {
+            if (txtIdNivel.Text!=string.Empty)
+            {
+            int id = int.Parse(txtIdNivel.Text);
+            var nivel = Nivel.ObterPorId(id);
+            txtNomeNivel.Text = nivel.Nome;
+            txtSiglaNivel.Text = nivel.Sigla;
+            }
+            
+        }
+        private void AtualizaListBox()
+        {
             List<Nivel> list = Nivel.Listar();
             listBox1.Items.Clear();
             foreach (var item in list)
             {
-                listBox1.Items.Add(item.Id + " - " + item.Nome);
+                listBox1.Items.Add("ID: "+ item.Id + " - " + item.Nome + " - " + item.Sigla);
+                txtIdNivel.Clear();
+                txtNomeNivel.Clear();
+                txtSiglaNivel.Clear();
+                txtNomeNivel.Focus();
             }
-            MessageBox.Show("Nível inserido com Sucesso \n ID: "+ nivel.Id.ToString());
-            txtIdNivel.Clear();
-            txtNomeNivel.Clear();
-            txtSiglaNivel.Clear();
-            txtNomeNivel.Focus();
-           }
-    
+        }
     }
 }

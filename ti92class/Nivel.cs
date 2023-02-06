@@ -87,7 +87,10 @@ namespace ti92class
         }
         public static void Atualizar(Nivel nivel)
         {
-
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "update niveis set nome = '" + nivel.Nome + "', sigla = '" + nivel.Sigla + "' where id = " + nivel.Id;
+            cmd.ExecuteReader();
         }
         public bool Excliur(int _id)
         {

@@ -38,6 +38,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnInsereNivel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnEditar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,6 +66,7 @@
             this.txtIdNivel.ReadOnly = true;
             this.txtIdNivel.Size = new System.Drawing.Size(39, 20);
             this.txtIdNivel.TabIndex = 2;
+            this.txtIdNivel.TextChanged += new System.EventHandler(this.txtIdNivel_TextChanged);
             // 
             // txtNomeNivel
             // 
@@ -109,7 +111,7 @@
             // 
             // btnInsereNivel
             // 
-            this.btnInsereNivel.Location = new System.Drawing.Point(73, 132);
+            this.btnInsereNivel.Location = new System.Drawing.Point(33, 132);
             this.btnInsereNivel.Name = "btnInsereNivel";
             this.btnInsereNivel.Size = new System.Drawing.Size(75, 23);
             this.btnInsereNivel.TabIndex = 8;
@@ -119,6 +121,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnEditar);
             this.groupBox1.Controls.Add(this.btnInsereNivel);
             this.groupBox1.Controls.Add(this.txtIdNivel);
             this.groupBox1.Controls.Add(this.label4);
@@ -132,6 +135,16 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nível";
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.Location = new System.Drawing.Point(114, 132);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(75, 23);
+            this.btnEditar.TabIndex = 10;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // Form1
             // 
@@ -163,6 +176,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnInsereNivel;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnEditar;
     }
 }
 
