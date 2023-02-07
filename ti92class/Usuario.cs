@@ -16,7 +16,16 @@ namespace ti92class
         public bool Ativo { get; set; }
 
         public Usuario() { }
-        // public Usuario() { string nome, string email, string senha, Nivel nivel }
+        
+        public Usuario( string _nome, string _email, string _senha, Nivel _nivel, bool _ativo)
+        {
+            Nome= _nome;
+            Email= _email;
+            Senha= _senha;
+            Nivel= _nivel;
+            Ativo= _ativo;
+        }
+       
          
         
         

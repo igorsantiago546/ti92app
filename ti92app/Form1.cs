@@ -111,5 +111,19 @@ namespace ti92app
                 }
             }
         }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if (txtIdNivel.Text != string.Empty)
+            {
+                Nivel nivel = Nivel.ObterPorId(int.Parse(txtIdNivel.Text));
+                if (nivel.Excliur(nivel.Id))
+                {
+                    MessageBox.Show("Nível "+ nivel.Nome +" excluido com sucesso!","Exclusão de nível");
+                    AtualizaListBox();
+                }
+                
+            }
+        }
     }
 }

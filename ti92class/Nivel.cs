@@ -69,6 +69,7 @@ namespace ti92class
                     )
                 );
             }
+            dr.Close();
             // retorna a lista preenchida
             return lista;
         }
@@ -85,6 +86,7 @@ namespace ti92class
                 nivel.Nome = dr.GetString(1);
                 nivel.Sigla = dr.GetString(2);
             }
+            dr.Close();
             return nivel;
         }
         public static void Atualizar(Nivel nivel)
@@ -92,14 +94,13 @@ namespace ti92class
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "update niveis set nome = '" + nivel.Nome + "', sigla = '" + nivel.Sigla + "' where id = " + nivel.Id;
-            cmd.ExecuteReader();
+            cmd.ExecuteNonQuery();
         }
         public bool Excliur(int _id)
         {
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "delete from niveis where id = " + _id;
-            cmd.ExecuteReader();
             bool result = cmd.ExecuteNonQuery()==1?true:false;
             return result;
 
