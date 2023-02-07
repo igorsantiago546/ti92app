@@ -25,7 +25,20 @@ namespace ti92class
             Nivel= _nivel;
             Ativo= _ativo;
         }
-       
+       public Usuario(int _id, string _nome, string _senha, Nivel _nivel, bool _ativo)
+        {
+            Id= _id;
+            Nome= _nome;
+            Senha= _senha;
+            Nivel= _nivel;
+            Ativo= _ativo;
+        }
+
+        public void Inserir()
+        {
+            // gravar um novo nível na tabela usuarios
+            
+        }
          
         
         
