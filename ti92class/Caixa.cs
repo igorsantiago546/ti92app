@@ -8,5 +8,16 @@ namespace ti92class
 {
     public class Caixa
     {
+        public int Id { get; set; }
+
+        public DateTime Data { get; set; }
+
+        public double Saldo { get; set; }   
+
+        public string Status { get; set; }
+
+        public Usuario Usuario { get; set; }
+
+
     }
 }

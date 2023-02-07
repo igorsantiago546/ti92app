@@ -5,6 +5,8 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using Renci.SshNet.Messages.Connection;
+using MySqlX.XDevAPI.Common;
 
 namespace ti92class
 {
@@ -35,7 +37,7 @@ namespace ti92class
         // Métodos da classe 
         public void Inserir()
         {
-            // Gravar um novo nível na tabela niveis0
+            // Gravar um novo nível na tabela niveis
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "insert niveis (nome, sigla) values ('" + Nome + "','" + Sigla + "')";
@@ -94,9 +96,29 @@ namespace ti92class
         }
         public bool Excliur(int _id)
         {
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "delete from niveis where id = " + _id;
+            cmd.ExecuteReader();
+            bool result = cmd.ExecuteNonQuery()==1?true:false;
+            return result;
 
-            return true;
-
+        }
+        public static List<Nivel> BuscarPorNome(string _parte)
+        {
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select * from niveis where nome like '%"+_parte+"%' order by nome;";
+            var dr = cmd.ExecuteReader();
+            List<Nivel> lista = new List<Nivel>();
+            while (dr.Read())
+            {
+                lista.Add(new Nivel (
+                        dr.GetInt32(0),dr.GetString(1), dr.GetString(2)    
+                    )
+                );
+            }
+            return lista;
         }
 
     }

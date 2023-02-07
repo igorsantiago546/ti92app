@@ -25,7 +25,7 @@ namespace ti92app
             //Nivel n = new Nivel();
 
             Nivel nivel = Nivel.ObterPorId(1);
-            label1.Text = nivel.Id + " - " + nivel.Nome + " - " + nivel.Sigla;
+            // label1.Text = nivel.Id + " - " + nivel.Nome + " - " + nivel.Sigla;
             AtualizaListBox();
            
         }
@@ -85,6 +85,30 @@ namespace ti92app
                 txtNomeNivel.Clear();
                 txtSiglaNivel.Clear();
                 txtNomeNivel.Focus();
+            }
+        }
+
+        private void txtBusca_TextChanged(object sender, EventArgs e)
+        {
+            // se txtBusca.Text for diferente de vazio
+            // e (&&) txtBusca.Text.Length for maior ou igual a 2 caracteres
+            if(txtBusca.Text!=string.Empty && txtBusca.Text.Length>=2 ) 
+            {
+                listBox1.Items.Clear();
+                var niveis = Nivel.BuscarPorNome(txtBusca.Text);
+                if ( niveis.Count>0)
+                {
+                    foreach (var nivel in niveis)
+                    {
+                        listBox1.Items.Add(nivel.Id +" - "+nivel.Nome +" - "+nivel.Sigla);
+                    }
+                    
+                }
+                else
+                {
+
+                    listBox1.Items.Add("Não há registros para essa consulta...");
+                }
             }
         }
     }
