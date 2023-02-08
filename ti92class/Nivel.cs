@@ -82,7 +82,7 @@ namespace ti92class
             var dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                nivel.Id = dr.GetInt32(0);
+                nivel.Id = dr.GetInt32(0); 
                 nivel.Nome = dr.GetString(1);
                 nivel.Sigla = dr.GetString(2);
             }

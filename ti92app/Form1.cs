@@ -125,5 +125,13 @@ namespace ti92app
                 
             }
         }
+
+        private void btnInserirUser_Click(object sender, EventArgs e)
+        {
+            Usuario usuario = new Usuario(txtNomeUser.Text, txtEmailUser.Text, txtSenhaUser.Text, Convert.ToInt32(cbNivelUser.Items), ActiveUser.Checked); 
+            usuario.Inserir();
+            txtIdUser.Text = usuario.ToString();
+
+        }
     }
 }
