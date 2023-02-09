@@ -160,5 +160,46 @@ namespace ti92app
 
             
         }
+        private void AtualizaListBoxUser()
+        {
+            List<Usuario> list = Usuario.Listar();
+            lstListaUser.Items.Clear();
+            foreach (var item in list)
+            {
+                lstListaUser.Items.Add("ID: " + item.Id + " - " + item.Nome + " - " + item.Email + " - " + item.Senha + " - "+item.Ativo);
+                txtIdUser.Clear();
+                txtNomeUser.Clear();
+                txtEmailUser.Clear();
+                txtSenhaUser.Clear();
+                chkUser.Checked ^= item.Ativo;
+                txtNomeUser.Focus();
+            }
+        }
+
+        private void btnEditarUser_Click(object sender, EventArgs e)
+        {
+            if (btnEditar.Text == "Editar")
+            {
+                txtIdUser.ReadOnly = false;
+                txtIdUser.Focus();
+                btnEditarUser.Text = "Gravar";
+                btnInserirUser.Enabled = false;
+            }
+            else
+            {
+                Usuario usuario = new Usuario();
+                usuario.Id = int.Parse(txtIdUser.Text);
+                usuario.Nome = txtNomeUser.Text;
+                usuario.Email = txtEmailUser.Text;
+                usuario.Senha = txtSenhaUser.Text;
+                usuario.Nivel.Id = cmbNivelUser.TabIndex;
+                usuario.Ativo = chkUser.Checked;
+                Usuario.Atualizar(usuario);
+                txtIdUser.ReadOnly = true;
+                txtNomeUser.Focus();
+                btnEditar.Text = "Editar";
+                AtualizaListBox();
+            }
+        }
     }
 }

@@ -48,7 +48,7 @@
             this.chkUser = new System.Windows.Forms.CheckBox();
             this.cmbNivelUser = new System.Windows.Forms.ComboBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnEditarUser = new System.Windows.Forms.Button();
             this.btnInserirUser = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -184,7 +184,7 @@
             this.groupBox2.Controls.Add(this.chkUser);
             this.groupBox2.Controls.Add(this.cmbNivelUser);
             this.groupBox2.Controls.Add(this.button3);
-            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.btnEditarUser);
             this.groupBox2.Controls.Add(this.btnInserirUser);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label7);
@@ -258,14 +258,15 @@
             this.button3.Text = "Excluir";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnEditarUser
             // 
-            this.button2.Location = new System.Drawing.Point(101, 253);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "Editar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnEditarUser.Location = new System.Drawing.Point(101, 253);
+            this.btnEditarUser.Name = "btnEditarUser";
+            this.btnEditarUser.Size = new System.Drawing.Size(75, 23);
+            this.btnEditarUser.TabIndex = 13;
+            this.btnEditarUser.Text = "Editar";
+            this.btnEditarUser.UseVisualStyleBackColor = true;
+            this.btnEditarUser.Click += new System.EventHandler(this.btnEditarUser_Click);
             // 
             // btnInserirUser
             // 
@@ -386,7 +387,7 @@
         private System.Windows.Forms.CheckBox chkUser;
         private System.Windows.Forms.ComboBox cmbNivelUser;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnEditarUser;
         private System.Windows.Forms.Button btnInserirUser;
         private System.Windows.Forms.TextBox txtBuscaUser;
         private System.Windows.Forms.ListBox lstListaUser;
