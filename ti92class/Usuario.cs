@@ -42,7 +42,7 @@ namespace ti92class
             // gravar um novo nível na tabela usuarios
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "insert usuarios (nome, email, senha, nivel, ativo) values ('" + Nome + "','" + Email + "','" + Senha + "'," + Nivel.Id + ",'" + Ativo + "',)";
+            cmd.CommandText = "insert usuarios (nome, email, senha, nivel_id, ativo) values ('" + Nome + "','" + Email + "','" + Senha + "'," + Nivel.Id + ",'" + Ativo + "',)";
             cmd.ExecuteNonQuery();
             cmd.CommandText = "select @@identity";
             Id = Convert.ToInt32(cmd.ExecuteScalar());
@@ -52,7 +52,7 @@ namespace ti92class
             List<Usuario> lista= new List<Usuario>();
             var cmd =Banco.Abrir();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from usuarios oder by nome asc";
+            cmd.CommandText = "select * from usuarios order by nome asc";
             var dr = cmd.ExecuteReader();
             while (dr.Read()) 
             {
@@ -102,28 +102,28 @@ namespace ti92class
             bool result = cmd.ExecuteNonQuery() == 1 ? true : false;
             return result;
         }
-        public static List<Usuario> BuscarPorNome(string _parte)
-        {
-            var cmd = Banco.Abrir();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from usuarios where nome like '%" + _parte + "%' order by nome";
-            var dr = cmd.ExecuteReader();
-            List<Usuario> lista = new List<Usuario>();
-            while (dr.Read()) 
-            { 
-                lista.Add(new Usuario
-                    (
-                    dr.GetInt32(0),
-                    dr.GetString(1),
-                    dr.GetString(2),
-                    Nivel.ObterPorId(dr.GetInt32(3)),
-                    dr.GetString(4),
-                    dr.GetBoolean(5)
-                    )
-                );
-            }
-            return lista;
-        }
+        //public static List<Usuario> BuscarPorNome(string _parte)
+        //{
+        //    var cmd = Banco.Abrir();
+        //    cmd.CommandType = CommandType.Text;
+        //    cmd.CommandText = "select * from usuarios where nome like '%" + _parte + "%' order by nome";
+        //    var dr = cmd.ExecuteReader();
+        //    List<Usuario> lista = new List<Usuario>();
+        //    while (dr.Read()) 
+        //    { 
+        //        lista.Add(new Usuario
+        //            (
+        //            dr.GetInt32(0),
+        //            dr.GetString(1),
+        //            dr.GetString(2),
+        //            Nivel.ObterPorId(dr.GetInt32(3)),
+        //            dr.GetString(4),
+        //            dr.GetBoolean(5)
+        //            )
+        //        );
+        //    }
+        //    return lista;
+        //}
 
          
         

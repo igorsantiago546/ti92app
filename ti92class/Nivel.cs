@@ -86,7 +86,7 @@ namespace ti92class
                 nivel.Nome = dr.GetString(1);
                 nivel.Sigla = dr.GetString(2);
             }
-            dr.Close();
+            
             return nivel;
         }
         public static void Atualizar(Nivel nivel)

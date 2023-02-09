@@ -20,29 +20,30 @@ namespace ti92app
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Cliente clemte= new Cliente();
+            cmbNivelUser.DataSource = Nivel.Listar();
+            cmbNivelUser.DisplayMember = "Nome";
+            CarregaLista();
 
-            //Nivel n = new Nivel();
 
             Nivel nivel = Nivel.ObterPorId(1);
-            // label1.Text = nivel.Id + " - " + nivel.Nome + " - " + nivel.Sigla;
+
             AtualizaListBox();
-           
+
         }
 
         private void btnInsereNivel_Click(object sender, EventArgs e)
         {
-            Nivel nivel = new Nivel(txtNomeNivel.Text,txtSiglaNivel.Text);
+            Nivel nivel = new Nivel(txtNomeNivel.Text, txtSiglaNivel.Text);
             nivel.Inserir();
             txtIdNivel.Text = nivel.Id.ToString();
             AtualizaListBox();
-            MessageBox.Show("Nível inserido com Sucesso \n ID: "+ nivel.Id.ToString());
-         
-           }
+            MessageBox.Show("Nível inserido com Sucesso \n ID: " + nivel.Id.ToString());
+
+        }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (btnEditar.Text=="Editar")
+            if (btnEditar.Text == "Editar")
             {
                 txtIdNivel.ReadOnly = false;
                 txtIdNivel.Focus();
@@ -65,14 +66,14 @@ namespace ti92app
 
         private void txtIdNivel_TextChanged(object sender, EventArgs e)
         {
-            if (txtIdNivel.Text!=string.Empty)
+            if (txtIdNivel.Text != string.Empty)
             {
-            int id = int.Parse(txtIdNivel.Text);
-            var nivel = Nivel.ObterPorId(id);
-            txtNomeNivel.Text = nivel.Nome;
-            txtSiglaNivel.Text = nivel.Sigla;
+                int id = int.Parse(txtIdNivel.Text);
+                var nivel = Nivel.ObterPorId(id);
+                txtNomeNivel.Text = nivel.Nome;
+                txtSiglaNivel.Text = nivel.Sigla;
             }
-            
+
         }
         private void AtualizaListBox()
         {
@@ -80,7 +81,7 @@ namespace ti92app
             listBox1.Items.Clear();
             foreach (var item in list)
             {
-                listBox1.Items.Add("ID: "+ item.Id + " - " + item.Nome + " - " + item.Sigla);
+                listBox1.Items.Add("ID: " + item.Id + " - " + item.Nome + " - " + item.Sigla);
                 txtIdNivel.Clear();
                 txtNomeNivel.Clear();
                 txtSiglaNivel.Clear();
@@ -92,17 +93,17 @@ namespace ti92app
         {
             // se txtBusca.Text for diferente de vazio
             // e (&&) txtBusca.Text.Length for maior ou igual a 2 caracteres
-            if(txtBusca.Text!=string.Empty && txtBusca.Text.Length>=2 ) 
+            if (txtBusca.Text != string.Empty && txtBusca.Text.Length >= 2)
             {
                 listBox1.Items.Clear();
                 var niveis = Nivel.BuscarPorNome(txtBusca.Text);
-                if ( niveis.Count>0)
+                if (niveis.Count > 0)
                 {
                     foreach (var nivel in niveis)
                     {
-                        listBox1.Items.Add(nivel.Id +" - "+nivel.Nome +" - "+nivel.Sigla);
+                        listBox1.Items.Add(nivel.Id + " - " + nivel.Nome + " - " + nivel.Sigla);
                     }
-                    
+
                 }
                 else
                 {
@@ -119,19 +120,45 @@ namespace ti92app
                 Nivel nivel = Nivel.ObterPorId(int.Parse(txtIdNivel.Text));
                 if (nivel.Excliur(nivel.Id))
                 {
-                    MessageBox.Show("Nível "+ nivel.Nome +" excluido com sucesso!","Exclusão de nível");
+                    MessageBox.Show("Nível " + nivel.Nome + " excluido com sucesso!", "Exclusão de nível");
                     AtualizaListBox();
                 }
-                
+
             }
         }
 
         private void btnInserirUser_Click(object sender, EventArgs e)
         {
-            Usuario usuario = new Usuario(txtNomeUser.Text, txtEmailUser.Text, txtSenhaUser.Text, Convert.ToInt32(cbNivelUser.Items), ActiveUser.Checked); 
+            Usuario usuario = new Usuario(txtNomeUser.Text, txtEmailUser.Text, txtSenhaUser.Text, Nivel.ObterPorId(Convert.ToInt32(cmbNivelUser.SelectedValue)), chkUser.Checked);
             usuario.Inserir();
-            txtIdUser.Text = usuario.ToString();
+            txtIdUser.Text = usuario.Id.ToString();
+            CarregaLista();
+        }
+        private void CarregaLista()
+        {
+            lstListaUser.Items.Clear();
+            var lista = Usuario.Listar();
+            foreach (var item in lista)
+            {
+                lstListaUser.Items.Add(item.Id + " - " + item.Nome + " - " + item.Nivel.Nome);
+            }
+        }
 
+        private void txtIdUser_TextChanged(object sender, EventArgs e)
+        {
+            
+                if (txtIdUser.Text != string.Empty)
+                {
+                    int id = int.Parse(txtIdUser.Text);
+                    var usuario = Usuario.ObterPorId(id);
+                    txtNomeUser.Text = usuario.Nome;
+                    txtEmailUser.Text = usuario.Email;
+                    txtSenhaUser.Text = usuario.Senha;
+                    cmbNivelUser.Text = Nivel.ObterPorId(id).ToString();
+                    chkUser.Checked = usuario.Ativo;
+            }
+
+            
         }
     }
 }
