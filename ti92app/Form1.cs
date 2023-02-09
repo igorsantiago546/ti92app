@@ -129,7 +129,7 @@ namespace ti92app
 
         private void btnInserirUser_Click(object sender, EventArgs e)
         {
-            Usuario usuario = new Usuario(txtNomeUser.Text, txtEmailUser.Text, txtSenhaUser.Text, Nivel.ObterPorId(Convert.ToInt32(cmbNivelUser.SelectedValue)), chkUser.Checked);
+            Usuario usuario = new Usuario(txtNomeUser.Text, txtEmailUser.Text, txtSenhaUser.Text, Nivel.ObterPorId((int)cmbNivelUser.SelectedValue), chkUser.Checked);
             usuario.Inserir();
             txtIdUser.Text = usuario.Id.ToString();
             CarregaLista();
