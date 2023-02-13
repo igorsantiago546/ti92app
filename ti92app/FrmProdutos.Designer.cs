@@ -36,6 +36,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnConsultar = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnAdicionar = new System.Windows.Forms.Button();
             this.chkDescontinuado = new System.Windows.Forms.CheckBox();
             this.mskDesconto = new System.Windows.Forms.MaskedTextBox();
             this.mskPreco = new System.Windows.Forms.MaskedTextBox();
@@ -44,12 +48,6 @@
             this.txtDescricao = new System.Windows.Forms.TextBox();
             this.txtId = new System.Windows.Forms.TextBox();
             this.dtgLista = new System.Windows.Forms.DataGridView();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnConsultar = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnAdicionar = new System.Windows.Forms.Button();
-            this.txtBuscar = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.clnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnCodbar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnDescricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,6 +55,8 @@
             this.clnPreco = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnDesconto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clnDescontinuado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgLista)).BeginInit();
             this.SuspendLayout();
@@ -151,90 +151,6 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "ID";
             // 
-            // chkDescontinuado
-            // 
-            this.chkDescontinuado.AutoSize = true;
-            this.chkDescontinuado.Enabled = false;
-            this.chkDescontinuado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkDescontinuado.Location = new System.Drawing.Point(462, 65);
-            this.chkDescontinuado.Name = "chkDescontinuado";
-            this.chkDescontinuado.Size = new System.Drawing.Size(133, 17);
-            this.chkDescontinuado.TabIndex = 6;
-            this.chkDescontinuado.Text = "DESCONTINUADO";
-            this.chkDescontinuado.UseVisualStyleBackColor = true;
-            // 
-            // mskDesconto
-            // 
-            this.mskDesconto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mskDesconto.Location = new System.Drawing.Point(463, 116);
-            this.mskDesconto.Name = "mskDesconto";
-            this.mskDesconto.Size = new System.Drawing.Size(100, 24);
-            this.mskDesconto.TabIndex = 5;
-            // 
-            // mskPreco
-            // 
-            this.mskPreco.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mskPreco.Location = new System.Drawing.Point(338, 116);
-            this.mskPreco.Name = "mskPreco";
-            this.mskPreco.Size = new System.Drawing.Size(100, 24);
-            this.mskPreco.TabIndex = 4;
-            this.mskPreco.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtCodBar
-            // 
-            this.txtCodBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodBar.ForeColor = System.Drawing.Color.Blue;
-            this.txtCodBar.Location = new System.Drawing.Point(196, 116);
-            this.txtCodBar.Name = "txtCodBar";
-            this.txtCodBar.Size = new System.Drawing.Size(117, 24);
-            this.txtCodBar.TabIndex = 3;
-            // 
-            // cmbUnidade
-            // 
-            this.cmbUnidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbUnidade.FormattingEnabled = true;
-            this.cmbUnidade.Location = new System.Drawing.Point(71, 116);
-            this.cmbUnidade.Name = "cmbUnidade";
-            this.cmbUnidade.Size = new System.Drawing.Size(100, 26);
-            this.cmbUnidade.TabIndex = 2;
-            // 
-            // txtDescricao
-            // 
-            this.txtDescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescricao.Location = new System.Drawing.Point(198, 65);
-            this.txtDescricao.Name = "txtDescricao";
-            this.txtDescricao.Size = new System.Drawing.Size(237, 24);
-            this.txtDescricao.TabIndex = 1;
-            // 
-            // txtId
-            // 
-            this.txtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtId.Location = new System.Drawing.Point(71, 63);
-            this.txtId.Name = "txtId";
-            this.txtId.ReadOnly = true;
-            this.txtId.Size = new System.Drawing.Size(100, 24);
-            this.txtId.TabIndex = 0;
-            // 
-            // dtgLista
-            // 
-            this.dtgLista.AllowUserToAddRows = false;
-            this.dtgLista.AllowUserToDeleteRows = false;
-            this.dtgLista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgLista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clnId,
-            this.clnCodbar,
-            this.clnDescricao,
-            this.clnUnidade,
-            this.clnPreco,
-            this.clnDesconto,
-            this.clnDescontinuado});
-            this.dtgLista.Location = new System.Drawing.Point(40, 324);
-            this.dtgLista.Name = "dtgLista";
-            this.dtgLista.ReadOnly = true;
-            this.dtgLista.RowHeadersVisible = false;
-            this.dtgLista.Size = new System.Drawing.Size(700, 226);
-            this.dtgLista.TabIndex = 1;
-            // 
             // btnCancelar
             // 
             this.btnCancelar.FlatAppearance.BorderColor = System.Drawing.Color.DeepSkyBlue;
@@ -301,22 +217,96 @@
             this.btnAdicionar.UseVisualStyleBackColor = true;
             this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
             // 
-            // txtBuscar
+            // chkDescontinuado
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(117, 305);
-            this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(623, 20);
-            this.txtBuscar.TabIndex = 2;
+            this.chkDescontinuado.AutoSize = true;
+            this.chkDescontinuado.Enabled = false;
+            this.chkDescontinuado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkDescontinuado.Location = new System.Drawing.Point(462, 65);
+            this.chkDescontinuado.Name = "chkDescontinuado";
+            this.chkDescontinuado.Size = new System.Drawing.Size(133, 17);
+            this.chkDescontinuado.TabIndex = 6;
+            this.chkDescontinuado.Text = "DESCONTINUADO";
+            this.chkDescontinuado.UseVisualStyleBackColor = true;
             // 
-            // label7
+            // mskDesconto
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(52, 310);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(57, 13);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "BUSCAR";
+            this.mskDesconto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mskDesconto.Location = new System.Drawing.Point(463, 116);
+            this.mskDesconto.Name = "mskDesconto";
+            this.mskDesconto.Size = new System.Drawing.Size(100, 24);
+            this.mskDesconto.TabIndex = 5;
+            // 
+            // mskPreco
+            // 
+            this.mskPreco.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mskPreco.Location = new System.Drawing.Point(338, 116);
+            this.mskPreco.Name = "mskPreco";
+            this.mskPreco.Size = new System.Drawing.Size(100, 24);
+            this.mskPreco.TabIndex = 4;
+            this.mskPreco.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtCodBar
+            // 
+            this.txtCodBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCodBar.ForeColor = System.Drawing.Color.Blue;
+            this.txtCodBar.Location = new System.Drawing.Point(196, 116);
+            this.txtCodBar.Name = "txtCodBar";
+            this.txtCodBar.Size = new System.Drawing.Size(117, 24);
+            this.txtCodBar.TabIndex = 3;
+            // 
+            // cmbUnidade
+            // 
+            this.cmbUnidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbUnidade.FormattingEnabled = true;
+            this.cmbUnidade.Items.AddRange(new object[] {
+            "Kilo",
+            "Unidade",
+            "Caixa",
+            "Pacote",
+            "Dose",
+            "Lote"});
+            this.cmbUnidade.Location = new System.Drawing.Point(71, 116);
+            this.cmbUnidade.Name = "cmbUnidade";
+            this.cmbUnidade.Size = new System.Drawing.Size(100, 26);
+            this.cmbUnidade.TabIndex = 2;
+            // 
+            // txtDescricao
+            // 
+            this.txtDescricao.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescricao.Location = new System.Drawing.Point(198, 65);
+            this.txtDescricao.Name = "txtDescricao";
+            this.txtDescricao.Size = new System.Drawing.Size(237, 24);
+            this.txtDescricao.TabIndex = 1;
+            // 
+            // txtId
+            // 
+            this.txtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtId.Location = new System.Drawing.Point(71, 63);
+            this.txtId.Name = "txtId";
+            this.txtId.ReadOnly = true;
+            this.txtId.Size = new System.Drawing.Size(100, 24);
+            this.txtId.TabIndex = 0;
+            // 
+            // dtgLista
+            // 
+            this.dtgLista.AllowUserToAddRows = false;
+            this.dtgLista.AllowUserToDeleteRows = false;
+            this.dtgLista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgLista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clnId,
+            this.clnCodbar,
+            this.clnDescricao,
+            this.clnUnidade,
+            this.clnPreco,
+            this.clnDesconto,
+            this.clnDescontinuado});
+            this.dtgLista.Location = new System.Drawing.Point(40, 324);
+            this.dtgLista.Name = "dtgLista";
+            this.dtgLista.ReadOnly = true;
+            this.dtgLista.RowHeadersVisible = false;
+            this.dtgLista.Size = new System.Drawing.Size(700, 226);
+            this.dtgLista.TabIndex = 1;
             // 
             // clnId
             // 
@@ -370,6 +360,23 @@
             this.clnDescontinuado.Name = "clnDescontinuado";
             this.clnDescontinuado.ReadOnly = true;
             this.clnDescontinuado.Width = 50;
+            // 
+            // txtBuscar
+            // 
+            this.txtBuscar.Location = new System.Drawing.Point(117, 305);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(623, 20);
+            this.txtBuscar.TabIndex = 2;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(52, 310);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(57, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "BUSCAR";
             // 
             // FrmProdutos
             // 
