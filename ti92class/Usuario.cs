@@ -39,14 +39,14 @@ namespace ti92class
 
         public void Inserir()
         {
-            // gravar um novo nível na tabela usuarios
+            // gravar um novo usuário na tabela usuarios
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "insert usuarios (nome, email, senha, nivel_id, ativo) values ('" + Nome + "','" + Email + "','" + Senha + "'," + Nivel.Id + ",'" + Ativo + "',)";
+            cmd.CommandText = "insert usuarios (nome, email, senha, nivel_id, ativo) values ('" + Nome + "','" + Email + "','" + Senha + "'," + Nivel.Id + ",1)";
             cmd.ExecuteNonQuery();
             cmd.CommandText = "select @@identity";
             Id = Convert.ToInt32(cmd.ExecuteScalar());
-        }
+        }   
         public static List<Usuario> Listar()
         {
             List<Usuario> lista= new List<Usuario>();
