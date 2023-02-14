@@ -12,12 +12,30 @@ namespace ti92class
 
         public DateTime Data { get; set; }
 
-        public double Saldo { get; set; }   
+        public double Saldo { get; set; }
 
         public string Status { get; set; }
 
         public Usuario Usuario { get; set; }
 
+        public Caixa() { }
 
+        public Caixa(DateTime data, double saldo, string status, Usuario usuario) 
+        { 
+            Data = data;
+            Saldo = saldo;
+            Status = status;
+            Usuario = usuario;
+        }
+
+        public Caixa(int id, DateTime data, double saldo, string status, Usuario usuario)
+        {
+            Id = id;
+            Data = data;
+            Saldo = saldo;
+            Status = status;
+            Usuario = usuario;
+        }
     }
+   
 }
