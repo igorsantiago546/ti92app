@@ -1,4 +1,4 @@
-﻿using System;
+﻿            using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -58,9 +58,9 @@ namespace ti92class
             {
                 lista.Add(new Usuario
                     (
-                    dr.GetInt32(0),
+                   dr.GetInt32(0),
                     dr.GetString(1),
-                    dr.GetString(2),
+                        dr.GetString(2),
                     dr.GetString(3),
                     Nivel.ObterPorId(dr.GetInt32(4)),
                     dr.GetBoolean(5)

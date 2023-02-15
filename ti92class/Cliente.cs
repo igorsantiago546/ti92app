@@ -40,7 +40,29 @@ namespace ti92class
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "insert clientes (nome, cpf, email, datacad, ativo) values ('" + Nome + "','" + Cpf + "','" + Email + "','" + DataCad + "',1)";
-
+            cmd.ExecuteNonQuery();
+            cmd.CommanText = "select @@identity";
+            Id =Convert.ToInt32(cmd.ExecuteScalar());
+        }
+        public static List<Cliente> Listar()
+        {
+            List<Cliente> lista= new List<Cliente>();
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select * from clientes order by nome asc";
+            var dr = cmd.ExecuteNonQuery();
+            while (dr.Read())
+            {
+                lista.Add(new Cliente
+                    (
+                        dr.GetString(0),
+                        dr.GetInt32(1),
+                        dr.GetString(2),
+                        dr.GetDatetime(3),
+                        dr.GetBoolean(4)
+                    )
+                    );
+            }
         }
     }
    
