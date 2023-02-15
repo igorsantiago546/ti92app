@@ -12,13 +12,15 @@ namespace ti92class
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-        public int Cpf { get; set;}
+        public string Cpf { get; set;}
         public string Email { get; set;}
         public DateTime DataCad { get; set;}
         public bool Ativo { get; set;}
+        public List<Telefone> Telefones { get; set; }
+        public List<Endereco> Enderecos { get; set; }
         public Cliente() { }
 
-        public Cliente (string nome, int cpf, string email, DateTime datacad, bool ativo)
+        public Cliente (string nome, string cpf, string email, DateTime datacad, bool ativo)
         {
             Nome= nome;
             Cpf= cpf;
@@ -27,7 +29,7 @@ namespace ti92class
             Ativo= ativo;
         }
 
-        public Cliente (int id, string nome, int cpf, string email, DateTime datacad, bool ativo)
+        public Cliente (int id, string nome, string cpf, string email, DateTime datacad, bool ativo)
         {
             Id = id;
             Nome = nome;
@@ -36,14 +38,39 @@ namespace ti92class
             DataCad = datacad;
             Ativo = ativo;
         }
+
+        public Cliente (int id, string nome, string cpf, string email, DateTime datacad, bool ativo, List<Telefone> telefones, List<Endereco> enderecos)
+        {
+            Id = id;
+            Nome = nome;
+            Cpf = cpf;
+            Email = email;
+            DataCad = datacad;
+            Ativo = ativo;
+            Telefones = telefones;
+            Enderecos = enderecos;
+        }
+        public Cliente(int id)
+        {
+            Telefones = Telefone.ListarPorCliente(id);
+            Enderecos = Endereco.ListarPorCliente(id);
+        }
         public void Inserir()
         {
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "insert clientes (nome, cpf, email, datacad, ativo) values ('" + Nome + "','" + Cpf + "','" + Email + "','" + DataCad + "',1)";
             cmd.ExecuteNonQuery();
-            cmd.CommanText = "select @@identity";
+            cmd.CommandText = "select @@identity";
             Id =Convert.ToInt32(cmd.ExecuteScalar());
+            foreach (var telefone in Telefones)
+            {
+                telefone.Inserir(Id);
+            }
+            foreach (var endereco in Enderecos)
+            {
+                endereco.Inserir(Id);
+            }
         }
         public static List<Cliente> Listar()
         {
@@ -56,11 +83,12 @@ namespace ti92class
             {
                 lista.Add(new Cliente
                     (
-                        dr.GetString(0),
-                        dr.GetInt32(1),
+                        dr.GetInt32(0),
+                        dr.GetString(1),
                         dr.GetString(2),
-                        dr.GetDatetime(3),
-                        dr.GetBoolean(4)
+                        dr.GetString(3),
+                        dr.GetDateTime(4),
+                        dr.GetBoolean(5)
                     )
                     );
             }
@@ -75,10 +103,10 @@ namespace ti92class
             var dr = cmd.ExecuteReader();
             while (dr.Read()) 
             {
-                cliente.Id = dr.GetString(0);
-                cliente.Cpf = dr.GetInt32(1);
+                cliente.Nome = dr.GetString(0);
+                cliente.Cpf = dr.GetString(1);
                 cliente.Email = dr.GetString(2);
-                cliente.DataCad = dr.GetDatetime(3);
+                cliente.DataCad = dr.GetDateTime(3);
                 cliente.Ativo = dr.GetBoolean(4);
             }
             return cliente;
@@ -87,7 +115,7 @@ namespace ti92class
         {
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "update clientes set nome = '" + cliente.Nome + "', cpf = " + cliente.Cpf + ",email = '" + cliente.Email + "',datacad = '" + cliente.DataCad + "',ativo = '" + cliente.Ativo;
+            cmd.CommandText = "update clientes set nome = '" + cliente.Nome + "', cpf = '" + cliente.Cpf + "',email = '" + cliente.Email + "',datacad = '" + cliente.DataCad + "',ativo = '" + cliente.Ativo;
             cmd.ExecuteNonQuery();
         }
         public bool Excluir(int _id)
@@ -110,9 +138,9 @@ namespace ti92class
                 lista.Add(new Cliente
                     (
                         dr.GetString(0),
-                        dr.GetInt32(1),
+                        dr.GetString(1),
                         dr.GetString(2),
-                        dr.GetDatetime(3),
+                        dr.GetDateTime(3),
                         dr.GetBoolean(4)
                     )
                     );
