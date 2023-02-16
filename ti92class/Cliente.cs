@@ -88,7 +88,9 @@ namespace ti92class
                         dr.GetString(2),
                         dr.GetString(3),
                         dr.GetDateTime(4),
-                        dr.GetBoolean(5)
+                        dr.GetBoolean(5),
+                        Telefone.ListarPorCliente(dr.GetInt32(6)),
+                        Endereco.ListarPorCliente(dr.GetInt32(7))
                     )
                     );
             }
@@ -108,6 +110,8 @@ namespace ti92class
                 cliente.Email = dr.GetString(2);
                 cliente.DataCad = dr.GetDateTime(3);
                 cliente.Ativo = dr.GetBoolean(4);
+                cliente.Telefones = Telefone.ListarPorCliente(dr.GetInt32(5));
+                cliente.Enderecos = Endereco.ListarPorCliente(dr.GetInt32(6));
             }
             return cliente;
         }
