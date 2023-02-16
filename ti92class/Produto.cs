@@ -111,15 +111,15 @@ namespace ti92class
             cmd.CommandText = "update produtos set descricao = '" + Descricao + "', unidade = '" + Unidade + "', codbar = '" + CodBar + "', preco = '" + Preco + "', desconto ='" + Desconto + "', descontinuado = '" + Descontinuado + "' where id = " + Id;
             cmd.ExecuteNonQuery();
         }
-        public bool Arquivar(int _id) // arquivando
-        {
-            var cmd = Banco.Abrir();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "update produtos set descontinuado = 0 where id = " + Id;
-            bool result = cmd.ExecuteNonQuery() == 1 ? true : false;
-            return result;
+            public bool Arquivar(int _id) // arquivando
+            {
+                var cmd = Banco.Abrir();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "update produtos set descontinuado = 0 where id = " + Id;
+                bool result = cmd.ExecuteNonQuery() == 1 ? true : false;
+                return result;
 
-        }
+            }
         public bool Reutaurar(int _id) // arquivando
         {
             var cmd = Banco.Abrir();

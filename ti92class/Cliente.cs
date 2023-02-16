@@ -89,8 +89,8 @@ namespace ti92class
                         dr.GetString(3),
                         dr.GetDateTime(4),
                         dr.GetBoolean(5),
-                        Telefone.ListarPorCliente(dr.GetInt32(6)),
-                        Endereco.ListarPorCliente(dr.GetInt32(7))
+                        Telefone.ListarPorCliente(dr.GetInt32(0)),
+                        Endereco.ListarPorCliente(dr.GetInt32(0))
                     )
                     );
             }
@@ -105,13 +105,14 @@ namespace ti92class
             var dr = cmd.ExecuteReader();
             while (dr.Read()) 
             {
-                cliente.Nome = dr.GetString(0);
-                cliente.Cpf = dr.GetString(1);
-                cliente.Email = dr.GetString(2);
-                cliente.DataCad = dr.GetDateTime(3);
-                cliente.Ativo = dr.GetBoolean(4);
-                cliente.Telefones = Telefone.ListarPorCliente(dr.GetInt32(5));
-                cliente.Enderecos = Endereco.ListarPorCliente(dr.GetInt32(6));
+                cliente.Id = dr.GetInt32(0);
+                cliente.Nome = dr.GetString(1);
+                cliente.Cpf = dr.GetString(2);
+                cliente.Email = dr.GetString(3);
+                cliente.DataCad = dr.GetDateTime(4);
+                cliente.Ativo = dr.GetBoolean(5);
+                cliente.Telefones = Telefone.ListarPorCliente(dr.GetInt32(0));
+                cliente.Enderecos = Endereco.ListarPorCliente(dr.GetInt32(0));
             }
             return cliente;
         }
@@ -122,13 +123,22 @@ namespace ti92class
             cmd.CommandText = "update clientes set nome = '" + cliente.Nome + "', cpf = '" + cliente.Cpf + "',email = '" + cliente.Email + "',datacad = '" + cliente.DataCad + "',ativo = '" + cliente.Ativo;
             cmd.ExecuteNonQuery();
         }
-        public bool Excluir(int _id)
+        public bool Arquivar(int _id)
         {
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "delete * from clientes where id = " + _id;
+            cmd.CommandText = "update clientes set ativo = 0 where id = " + _id;
             bool result = cmd.ExecuteNonQuery() == 1 ? true : false;
             return result;
+        }
+        public bool Reutaurar(int _id) // arquivando
+        {
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "update clientes set ativo = 0 where id = " + _id;
+            bool result = cmd.ExecuteNonQuery() == 1 ? true : false;
+            return result;
+
         }
         public static List<Cliente> BuscarPorNome(string _parte)
         {
@@ -141,12 +151,15 @@ namespace ti92class
             {
                 lista.Add(new Cliente
                     (
-                        dr.GetString(0),
+                        dr.GetInt32(0),
                         dr.GetString(1),
                         dr.GetString(2),
-                        dr.GetDateTime(3),
-                        dr.GetBoolean(4)
-                    )
+                        dr.GetString(3),
+                        dr.GetDateTime(4),
+                        dr.GetBoolean(5),
+                        Telefone.ListarPorCliente(dr.GetInt32(0)),
+                        Endereco.ListarPorCliente(dr.GetInt32(0))
+                        )
                     );
             }
             return lista;
