@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
+using Renci.SshNet.Messages.Connection;
 
 namespace ti92class
 {
@@ -16,17 +18,20 @@ namespace ti92class
         public Usuario Usuario { get; set; }
         public DateTime ArquivadoEm { get; set; }
         public List<ItemPedido> Itens { get; set; } 
+        public string Hashcode { get; set; }
+
 
 
         public Pedido()
         {
             Usuario = new Usuario();
-            Cliente= new Cliente();
+            Cliente = new Cliente();
+            Itens = new List<ItemPedido>();
         }
 
         
 
-        public Pedido(int id, DateTime data, string status, double desconto, Cliente cliente, Usuario usuario, List<ItemPedido> itens)
+        public Pedido(int id,string hashcode, DateTime data, string status, double desconto, Cliente cliente, Usuario usuario,DateTime arquivadoEm, List<ItemPedido> itens = null)
         {
             Id = id;
             Data = data;
@@ -35,50 +40,128 @@ namespace ti92class
             Cliente = cliente;
             Usuario = usuario;
             Itens = itens;  
+            Hashcode= hashcode;
+            ArquivadoEm= arquivadoEm;
         }
 
-        public Pedido(DateTime data, string status,double desconto, Cliente cliente, Usuario usuario, List<ItemPedido> itens = null)
+        public Pedido(Cliente cliente, Usuario usuario)
         {
-            Data = data;
-            Status = status;
-            Desconto = desconto;
+            Data = new DateTime();
+            Status = "A";
+            Desconto = 0;
             Cliente = cliente;
             Usuario = usuario;
-            Itens = itens;
         }
         public void Inserir()
         {
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "insert pedidos (data, status, desconto, cliente_id, usuario_id) " +
+                "values (default, default, 0, @client, @user);";
+            cmd.Parameters.Add("@client", MySqlDbType.Int32).Value = Cliente.Id;
+            cmd.Parameters.Add("@user", MySqlDbType.Int32).Value = Usuario.Id;
+            cmd.ExecuteNonQuery();
+            cmd.CommandText = "update pedidos set hashcode = @hashcode+'(select @@identity)' where id = (select @@identity)";
+            cmd.Parameters.Clear();
+            Random rand= new Random();
+            cmd.Parameters.Add("@hashcode",MySqlDbType.VarChar).Value = "P" + rand.Next(10001,99999).ToString();
+            cmd.ExecuteNonQuery();
 
         }
         public static List<Pedido> Listar()
         {
             List<Pedido> list = new List<Pedido>();
-
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "select * from pedidos where arquivado_em is null order by id desc;";
+            var dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                list.Add(new Pedido(
+                    dr.GetInt32(0),
+                    dr.GetString(7),
+                    dr.GetDateTime(1),
+                    dr.GetString(2),
+                    dr.GetDouble(3),
+                    Cliente.ObterPorId(dr.GetInt32(4)),
+                    Usuario.ObterPorId(dr.GetInt32(5)),
+                    dr.GetDateTime(6),
+                    ItemPedido.Listar(dr.GetInt32(0))
+                    ));
+            }
+            return list;
+        }
+        public static List<Pedido> Arquivados()
+        {
+            List<Pedido> list = new List<Pedido>();
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "select * from pedidos where arquivado_em is not null order by arquivado_em desc;";
+            var dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                list.Add(new Pedido(
+                    dr.GetInt32(0),
+                    dr.GetString(7),
+                    dr.GetDateTime(1),
+                    dr.GetString(2),
+                    dr.GetDouble(3),
+                    Cliente.ObterPorId(dr.GetInt32(4)),
+                    Usuario.ObterPorId(dr.GetInt32(5)),
+                    dr.GetDateTime(6),
+                    ItemPedido.Listar(dr.GetInt32(0))
+                    ));
+            }
             return list;
         }
 
         public static Pedido ObterPorId(int id)
         {
             Pedido pedido = new Pedido();
-
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "select * from pedidos where id = " + id;
+            var dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                pedido.Id = dr.GetInt32(0);
+                pedido.Hashcode = dr.GetString(7);
+                pedido.Data = dr.GetDateTime(1);
+                pedido.Status = dr.GetString(2);
+                pedido.Desconto = dr.GetDouble(3);
+                pedido.Cliente = Cliente.ObterPorId(dr.GetInt32(4));
+                pedido.Usuario = Usuario.ObterPorId(dr.GetInt32(5));
+                pedido.ArquivadoEm = dr.GetDateTime(6);
+                pedido.Itens = ItemPedido.Listar(dr.GetInt32(0));
+            }
             return pedido;
         }
 
-        public bool Atualizar()
+        public void Atualizar()
         {
-            
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "update pedidos set status = @status, desconto = @desconto where id = @id;";
+            cmd.Parameters.Clear();
+            cmd.Parameters.AddWithValue("@id", Id);
+            cmd.Parameters.AddWithValue("@status", Status);
+            cmd.Parameters.AddWithValue("@desconto", Desconto);
+            cmd.ExecuteNonQuery();
 
-            return  false;
         }
 
-        public void Arquivar(int id)
+        public void Arquivar()
         {
-
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "update pedidos set arquivado_em = now() where id = "+ Id;
+            cmd.ExecuteNonQuery();
         }
 
-        public void Restaurar   (int id)
+        public void Restaurar(int id)
         {
-
+            var cmd = Banco.Abrir();
+            cmd.CommandText = "update pedidos set arquivado_em = null where id = " + id;
+            cmd.ExecuteNonQuery();
+        }
+        
+        public double ObterTotal()
+        {
+            return 0;
         }
     }
 }
