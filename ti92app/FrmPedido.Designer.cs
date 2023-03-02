@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grbDados = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,6 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
             this.grbProduto = new System.Windows.Forms.GroupBox();
+            this.lblDesMax = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtDesconto = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -66,7 +67,10 @@
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.btnNovo = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.lblDesMax = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.grbDados.SuspendLayout();
             this.grbProduto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItens)).BeginInit();
@@ -149,6 +153,7 @@
             this.txtId.Size = new System.Drawing.Size(100, 31);
             this.txtId.TabIndex = 2;
             this.txtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtId.TextChanged += new System.EventHandler(this.txtId_TextChanged);
             // 
             // grbProduto
             // 
@@ -174,6 +179,15 @@
             this.grbProduto.TabStop = false;
             this.grbProduto.Text = "Produtos";
             // 
+            // lblDesMax
+            // 
+            this.lblDesMax.AutoSize = true;
+            this.lblDesMax.ForeColor = System.Drawing.Color.Red;
+            this.lblDesMax.Location = new System.Drawing.Point(489, 75);
+            this.lblDesMax.Name = "lblDesMax";
+            this.lblDesMax.Size = new System.Drawing.Size(0, 13);
+            this.lblDesMax.TabIndex = 11;
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -191,6 +205,7 @@
             this.txtDesconto.TabIndex = 9;
             this.txtDesconto.Text = "0";
             this.txtDesconto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDesconto.TextChanged += new System.EventHandler(this.txtDesconto_TextChanged);
             // 
             // label8
             // 
@@ -310,8 +325,8 @@
             // 
             // clnSeq
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            this.clnSeq.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            this.clnSeq.DefaultCellStyle = dataGridViewCellStyle7;
             this.clnSeq.Frozen = true;
             this.clnSeq.HeaderText = "#";
             this.clnSeq.Name = "clnSeq";
@@ -344,8 +359,8 @@
             // 
             // clnPreco
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            this.clnPreco.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            this.clnPreco.DefaultCellStyle = dataGridViewCellStyle8;
             this.clnPreco.Frozen = true;
             this.clnPreco.HeaderText = "Preço R$";
             this.clnPreco.Name = "clnPreco";
@@ -362,8 +377,8 @@
             // 
             // clnDesconto
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
-            this.clnDesconto.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopRight;
+            this.clnDesconto.DefaultCellStyle = dataGridViewCellStyle9;
             this.clnDesconto.Frozen = true;
             this.clnDesconto.HeaderText = "Desconto";
             this.clnDesconto.Name = "clnDesconto";
@@ -416,20 +431,45 @@
             this.lblStatus.TabIndex = 1;
             this.lblStatus.Text = "Sts";
             // 
-            // lblDesMax
+            // button1
             // 
-            this.lblDesMax.AutoSize = true;
-            this.lblDesMax.ForeColor = System.Drawing.Color.Red;
-            this.lblDesMax.Location = new System.Drawing.Point(489, 75);
-            this.lblDesMax.Name = "lblDesMax";
-            this.lblDesMax.Size = new System.Drawing.Size(0, 13);
-            this.lblDesMax.TabIndex = 11;
+            this.button1.Location = new System.Drawing.Point(832, 486);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(176, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(832, 443);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 6;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(832, 417);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.TabIndex = 6;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(832, 391);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 20);
+            this.textBox3.TabIndex = 6;
             // 
             // FrmPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1192, 670);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnNovo);
             this.Controls.Add(this.dgvItens);
             this.Controls.Add(this.txtTotal);
@@ -490,5 +530,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clnDesconto;
         private System.Windows.Forms.DataGridViewTextBoxColumn clnTotal;
         private System.Windows.Forms.Label lblDesMax;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }

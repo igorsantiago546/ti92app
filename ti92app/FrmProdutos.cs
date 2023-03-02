@@ -63,7 +63,7 @@ namespace ti92app
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            Produto produto= new Produto(
+            Produto produto = new Produto(
                 int.Parse(txtId.Text),
                 txtDescricao.Text,
                 cmbUnidade.Text,
@@ -71,7 +71,6 @@ namespace ti92app
                 double.Parse(mskPreco.Text),
                 double.Parse(mskDesconto.Text),
                 chkDescontinuado.Checked
-              
                 );
             produto.Atualizar();
             MessageBox.Show("Produto atualizado com sucesso!!");

@@ -76,6 +76,7 @@ namespace ti92app
                 txtDescricao.Clear();
                 txtUnid.Clear();
                 txtPreco.Clear();
+                txtDesconto.Clear();
             }
             
         }
@@ -123,5 +124,14 @@ namespace ti92app
             txtTotal.Text = total.ToString("##0.00");
         }
 
+        private void txtId_TextChanged(object sender, EventArgs e)
+        {
+            // ItemPedido.BuscarPorProdutoPedido(Convert.ToInt32(txtId), Convert.ToInt32(txtIdProd));
+        }
+
+        private void txtDesconto_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
