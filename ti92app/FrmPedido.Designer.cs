@@ -66,6 +66,7 @@
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.btnNovo = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.lblDesMax = new System.Windows.Forms.Label();
             this.grbDados.SuspendLayout();
             this.grbProduto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItens)).BeginInit();
@@ -151,6 +152,7 @@
             // 
             // grbProduto
             // 
+            this.grbProduto.Controls.Add(this.lblDesMax);
             this.grbProduto.Controls.Add(this.label10);
             this.grbProduto.Controls.Add(this.txtDesconto);
             this.grbProduto.Controls.Add(this.label8);
@@ -171,7 +173,6 @@
             this.grbProduto.TabIndex = 0;
             this.grbProduto.TabStop = false;
             this.grbProduto.Text = "Produtos";
-
             // 
             // label10
             // 
@@ -415,6 +416,15 @@
             this.lblStatus.TabIndex = 1;
             this.lblStatus.Text = "Sts";
             // 
+            // lblDesMax
+            // 
+            this.lblDesMax.AutoSize = true;
+            this.lblDesMax.ForeColor = System.Drawing.Color.Red;
+            this.lblDesMax.Location = new System.Drawing.Point(489, 75);
+            this.lblDesMax.Name = "lblDesMax";
+            this.lblDesMax.Size = new System.Drawing.Size(0, 13);
+            this.lblDesMax.TabIndex = 11;
+            // 
             // FrmPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -479,5 +489,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clnQtd;
         private System.Windows.Forms.DataGridViewTextBoxColumn clnDesconto;
         private System.Windows.Forms.DataGridViewTextBoxColumn clnTotal;
+        private System.Windows.Forms.Label lblDesMax;
     }
 }

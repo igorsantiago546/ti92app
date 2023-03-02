@@ -13,6 +13,7 @@ namespace ti92app
 {
     public partial class FrmPedido : Form
     {
+        private double DescontoMax { get; set; }
         public FrmPedido()
         {
             InitializeComponent();
@@ -20,6 +21,8 @@ namespace ti92app
 
         private void FrmPedido_Load(object sender, EventArgs e)
         {
+            
+
             cmbCliente.DataSource = Cliente.Listar();
             cmbCliente.DisplayMember = "nome";
             cmbCliente.ValueMember = "Id";
@@ -50,6 +53,17 @@ namespace ti92app
                     txtDescricao.Text = produto.Descricao;
                     txtUnid.Text = produto.Unidade;
                     txtPreco.Text = produto.Preco.ToString();
+                    if(produto.Desconto > 0)
+                    {
+                        DescontoMax = produto.Desconto * produto.Preco;
+                        lblDesMax.Text = DescontoMax.ToString("#0.00");
+                        txtDesconto.Enabled = true;
+                    }
+                    else
+                    {
+                        lblDesMax.Text = "";
+                        txtDesconto.Enabled= false;
+                    }
                     // txtQuantidade.Focus(); 
                 }
                 else

@@ -39,8 +39,8 @@ namespace ti92app
                 dtgLista.Rows[linha].Cells[1].Value = item.CodBar;
                 dtgLista.Rows[linha].Cells[2].Value = item.Descricao;
                 dtgLista.Rows[linha].Cells[3].Value = item.Unidade;
-                dtgLista.Rows[linha].Cells[4].Value = item.Preco;
-                dtgLista.Rows[linha].Cells[5].Value = item.Desconto;
+                dtgLista.Rows[linha].Cells[4].Value = item.Preco.ToString("R$ #0.00");
+                dtgLista.Rows[linha].Cells[5].Value = item.Desconto.ToString("#0.00%");
                 dtgLista.Rows[linha].Cells[6].Value = item.Descontinuado;
                 linha++;
             }
