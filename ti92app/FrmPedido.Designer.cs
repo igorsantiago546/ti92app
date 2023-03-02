@@ -171,6 +171,7 @@
             this.grbProduto.TabIndex = 0;
             this.grbProduto.TabStop = false;
             this.grbProduto.Text = "Produtos";
+
             // 
             // label10
             // 
@@ -258,7 +259,6 @@
             this.txtUnid.ReadOnly = true;
             this.txtUnid.Size = new System.Drawing.Size(53, 20);
             this.txtUnid.TabIndex = 5;
-           
             // 
             // txtDescricao
             // 

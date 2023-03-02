@@ -109,9 +109,5 @@ namespace ti92app
             txtTotal.Text = total.ToString("##0.00");
         }
 
-        private void txtUnid_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
